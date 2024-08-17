@@ -10,8 +10,9 @@ public class RectangleObserver implements Observer {
     @Override
     public void handleEvent(RectangleEvent event) {
         Rectangle source = event.getSource();
-        RectangleValues values = RectangleWarehouse.getInstance().get(source.getId());
-        values.setPerimeter((source.getSideA() + source.getSideB()) * 2);
-        values.setSquare(source.getSideA() * source.getSideB());
+        double perimeter = (source.getSideA() + source.getSideB()) * 2;
+        double square = source.getSideA() * source.getSideB();
+        RectangleValues values = new RectangleValues(perimeter, square);
+        RectangleWarehouse.getInstance().put(source.getId(), values);
     }
 }
